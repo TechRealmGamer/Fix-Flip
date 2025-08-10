@@ -6,7 +6,7 @@ namespace LuciferGamingStudio
     {
         public override void Interact()
         {
-            Interactable interactable = GetObjectInFocus();
+            Interactable interactable = InteractionManager.Instance.GetObjectInFocus();
             
             if (interactable != null)
             {

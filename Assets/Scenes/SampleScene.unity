@@ -1070,6 +1070,7 @@ GameObject:
   - component: {fileID: 1208786793}
   - component: {fileID: 1208786795}
   - component: {fileID: 1208786794}
+  - component: {fileID: 1208786796}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1151,6 +1152,19 @@ MonoBehaviour:
   mouseXSensitivity: 50
   mouseYSensitivity: 50
   maxLookAngle: 60
+--- !u!114 &1208786796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208786788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bfb402f51db4d48a2ca842a2863f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 3
 --- !u!1 &1284668607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,7 +1373,6 @@ GameObject:
   - component: {fileID: 1804558598}
   - component: {fileID: 1804558597}
   - component: {fileID: 1804558596}
-  - component: {fileID: 1804558595}
   m_Layer: 0
   m_Name: Interactable Cube
   m_TagString: Untagged
@@ -1367,18 +1380,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1804558595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804558594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46b5492b475ed8343bd11b374bc8e697, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1804558596
 BoxCollider:
   m_ObjectHideFlags: 0
