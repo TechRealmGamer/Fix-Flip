@@ -15,6 +15,8 @@ namespace LuciferGamingStudio
         public UnityEvent OnSprintReleased;
         public UnityEvent OnInteractPressed;
         public UnityEvent OnInteractReleased;
+        public UnityEvent OnChangeToolPressed;
+        public UnityEvent OnChangeToolReleased;
 
         #endregion
 
@@ -42,6 +44,8 @@ namespace LuciferGamingStudio
             playerInputActions.PlayerController.Sprint.canceled += ctx => OnSprintReleased?.Invoke();
             playerInputActions.Tools.Interact.performed += ctx => OnInteractPressed?.Invoke();
             playerInputActions.Tools.Interact.canceled += ctx => OnInteractReleased?.Invoke();
+            playerInputActions.Tools.ChangeTool.performed += ctx => OnChangeToolPressed?.Invoke();
+            playerInputActions.Tools.ChangeTool.canceled += ctx => OnChangeToolReleased?.Invoke();
         }
 
         private void OnDisable()
@@ -53,6 +57,8 @@ namespace LuciferGamingStudio
             playerInputActions.PlayerController.Sprint.canceled -= ctx => OnSprintReleased?.Invoke();
             playerInputActions.Tools.Interact.performed -= ctx => OnInteractPressed?.Invoke();
             playerInputActions.Tools.Interact.canceled -= ctx => OnInteractReleased?.Invoke();
+            playerInputActions.Tools.ChangeTool.performed -= ctx => OnChangeToolPressed?.Invoke();
+            playerInputActions.Tools.ChangeTool.canceled -= ctx => OnChangeToolReleased?.Invoke();
         }
 
         public Vector2 GetMovementInput()
@@ -73,6 +79,16 @@ namespace LuciferGamingStudio
         public bool IsSprintPressed()
         {
             return playerInputActions.PlayerController.Sprint.IsPressed();
+        }
+
+        public bool IsInteractPressed()
+        {
+            return playerInputActions.Tools.Interact.IsPressed();
+        }
+
+        public bool IsChangeToolPressed()
+        {
+            return playerInputActions.Tools.ChangeTool.IsPressed();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace LuciferGamingStudio
@@ -25,6 +26,14 @@ namespace LuciferGamingStudio
 
         private void Update()
         {
+            if (InputManager.Instance.IsChangeToolPressed())
+                return;
+
+            PerformMovement();
+        }
+
+        private void PerformMovement()
+        {
             isGrounded = characterController.isGrounded;
 
             if (isGrounded && playerVelocity.y < 0)
@@ -32,11 +41,11 @@ namespace LuciferGamingStudio
 
             Vector2 input = InputManager.Instance.GetMovementInput();
             Vector3 move = transform.right * input.x + transform.forward * input.y;
-            
+
             float currentSpeed = InputManager.Instance.IsSprintPressed() ? sprintSpeed : walkSpeed;
 
             characterController.Move(move.normalized * currentSpeed * Time.deltaTime);
-            
+
             if (InputManager.Instance.IsJumpPressedInThisFrame() && isGrounded)
             {
                 playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);

@@ -29,6 +29,14 @@ namespace LuciferGamingStudio
 
         private void LateUpdate()
         {
+            if (InputManager.Instance.IsChangeToolPressed())
+                return; // Skip camera movement when changing tools
+
+            PerformCameraMovement();
+        }
+
+        private void PerformCameraMovement()
+        {
             // If Cursor is not locked, do not process look input
             if (Cursor.lockState != CursorLockMode.Locked)
                 return;
@@ -41,7 +49,7 @@ namespace LuciferGamingStudio
 
             // Rotate the player and camera based on mouse input
             transform.Rotate(Vector3.up * lookInput.x * mouseXSensitivity * Time.deltaTime);
-            
+
             initialCamRotation.y += lookInput.y * mouseYSensitivity * Time.deltaTime;
             initialCamRotation.y = Mathf.Clamp(initialCamRotation.y, -maxLookAngle, maxLookAngle);
 

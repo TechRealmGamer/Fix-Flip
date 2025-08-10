@@ -234,6 +234,15 @@ namespace LuciferGamingStudio
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""a701d91c-52c2-4248-a608-ae47a1d19c94"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -245,6 +254,17 @@ namespace LuciferGamingStudio
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de936530-0848-4e65-b755-a97584419299"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeTool"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -262,6 +282,7 @@ namespace LuciferGamingStudio
             // Tools
             m_Tools = asset.FindActionMap("Tools", throwIfNotFound: true);
             m_Tools_Interact = m_Tools.FindAction("Interact", throwIfNotFound: true);
+            m_Tools_ChangeTool = m_Tools.FindAction("ChangeTool", throwIfNotFound: true);
         }
 
         ~@PlayerInputActions()
@@ -473,6 +494,7 @@ namespace LuciferGamingStudio
         private readonly InputActionMap m_Tools;
         private List<IToolsActions> m_ToolsActionsCallbackInterfaces = new List<IToolsActions>();
         private readonly InputAction m_Tools_Interact;
+        private readonly InputAction m_Tools_ChangeTool;
         /// <summary>
         /// Provides access to input actions defined in input action map "Tools".
         /// </summary>
@@ -488,6 +510,10 @@ namespace LuciferGamingStudio
             /// Provides access to the underlying input action "Tools/Interact".
             /// </summary>
             public InputAction @Interact => m_Wrapper.m_Tools_Interact;
+            /// <summary>
+            /// Provides access to the underlying input action "Tools/ChangeTool".
+            /// </summary>
+            public InputAction @ChangeTool => m_Wrapper.m_Tools_ChangeTool;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -517,6 +543,9 @@ namespace LuciferGamingStudio
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @ChangeTool.started += instance.OnChangeTool;
+                @ChangeTool.performed += instance.OnChangeTool;
+                @ChangeTool.canceled += instance.OnChangeTool;
             }
 
             /// <summary>
@@ -531,6 +560,9 @@ namespace LuciferGamingStudio
                 @Interact.started -= instance.OnInteract;
                 @Interact.performed -= instance.OnInteract;
                 @Interact.canceled -= instance.OnInteract;
+                @ChangeTool.started -= instance.OnChangeTool;
+                @ChangeTool.performed -= instance.OnChangeTool;
+                @ChangeTool.canceled -= instance.OnChangeTool;
             }
 
             /// <summary>
@@ -614,6 +646,13 @@ namespace LuciferGamingStudio
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnInteract(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "ChangeTool" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnChangeTool(InputAction.CallbackContext context);
         }
     }
 }
