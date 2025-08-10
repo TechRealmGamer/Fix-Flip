@@ -31,14 +31,21 @@ namespace LuciferGamingStudio
             {
                 GameObject newObjectInFocus = hit.collider.gameObject;
                 
-                if (newObjectInFocus == currentFocusedObject || !newObjectInFocus.TryGetComponent<Interactable>(out Interactable interactable))
+                if (newObjectInFocus == currentFocusedObject)
                     return;
 
                 if (currentFocusedObject != null)
                     currentFocusedObject.layer = LayerMask.NameToLayer("Default");
 
-                currentFocusedObject = newObjectInFocus;
-                currentFocusedObject.layer = LayerMask.NameToLayer("Highlighted");
+                if (newObjectInFocus.TryGetComponent<Interactable>(out Interactable interactable))
+                {
+                    currentFocusedObject = newObjectInFocus;
+                    currentFocusedObject.layer = LayerMask.NameToLayer("Highlighted");
+                }
+                else
+                {
+                    currentFocusedObject = null;
+                }
             }
             else
             {
